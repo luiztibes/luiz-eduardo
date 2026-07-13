@@ -1,0 +1,72 @@
+Cenário 1: O "Testador de Limites" (Bloqueio de estoque)
+Esse é pra ver se o sistema é esperto e não deixa a galera levar o que não tem.
+
+O que a gente quer testar: Se o sistema barra quando alguém tenta tirar mais do que tem no armário.
+
+Massa de teste (Os dados):
+
+Produto escolhido: Pano de Prato (ID: 4)
+
+O que tem lá: 8 pacotes
+
+O que o sem noção quer levar: 10 pacotes
+
+Passo a passo pra rodar:
+
+Loga com o usuário operador (senha 1234).
+
+Digita a opção 2 (Registrar Saída).
+
+Escolhe o ID 4 e joga a quantidade 10.
+
+O que tem que acontecer: O sistema precisa dar um grito na tela e travar tudo exatamente com essa mensagem:
+
+"Saída não permitida: estoque insuficiente. Disponível: 8. Solicitado: 10."
+
+Resultado: O banco não mudou nada e o usuário folgado foi barrado.
+
+Cenário 2: O "Caminho Feliz" (Saída com sucesso)
+Esse é o teste padrão, quando tudo funciona do jeito que deveria.
+
+O que a gente quer testar: Ver se o sistema realmente diminui o estoque quando a quantidade pedida é justa.
+
+Massa de teste (Os dados):
+
+Produto escolhido: Detergente Industrial (ID: 1)
+
+O que tem lá: 50 unidades
+
+O que vão levar: 5 unidades
+
+Passo a passo pra rodar:
+
+Loga com o usuário operador (senha 1234).
+
+Escolhe a opção 2 (Registrar Saída).
+
+Coloca o ID 1 e pede 5 unidades.
+
+O que tem que acontecer: O sistema avisa que deu tudo certo:
+
+"Saída registrada com sucesso no sistema!"
+
+Resultado: Se você for lá no estoque olhar (opção 1), o Detergente caiu certinho de 50 para 45.
+
+Cenário 3: O "Dedo-Duro" (Rastreabilidade e Logs)
+Esse aqui serve pra chefia saber quem fez o quê e que horas fez. Não dá pra esconder nada!
+
+O que a gente quer testar: Garantir que o sistema dedurou a saída que fizemos no Cenário 2, salvando a hora e quem fez.
+
+Massa de teste (Os dados):
+
+A saída de 5 detergentes que o operador acabou de fazer.
+
+Passo a passo pra rodar:
+
+No menu principal, escolhe a opção 5 (Visualizar Histórico).
+
+O que tem que acontecer: Tem que aparecer uma linha bem detalhada no terminal mostrando a ação:
+
+[13/07/2026 16:38:33] - SAÍDA | Item: Detergente Industrial | Qtd: 5 | Resp: operador
+
+Resultado: Tudo gravado no banco com data, hora e o nome do culpado.

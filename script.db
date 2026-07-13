@@ -1,0 +1,36 @@
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    perfil VARCHAR(20) NOT NULL CHECK (perfil IN ('Administrador', 'Operador'))
+);
+
+CREATE TABLE produtos (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    tipo VARCHAR(50) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    estoque INTEGER DEFAULT 0 CHECK (estoque >= 0),
+    descricao TEXT
+);
+
+CREATE TABLE movimentacoes (
+    id SERIAL PRIMARY KEY,
+    produto_id INTEGER REFERENCES produtos(id),
+    tipo_movimentacao VARCHAR(10) CHECK (tipo_movimentacao IN ('ENTRADA', 'SAIDA')),
+    quantidade INTEGER NOT NULL,
+    data_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usuario_id INTEGER REFERENCES usuarios(id)
+);
+
+INSERT INTO usuarios (username, senha, perfil) VALUES 
+('admin', '1234', 'Administrador'),
+('operador', '1234', 'Operador');
+
+INSERT INTO produtos (nome, tipo, preco, estoque, descricao) VALUES
+('Detergente Industrial', 'Limpeza', 15.00, 50, 'Detergente concentrado de 5L'),
+('Desinfetante Pinheiro', 'Limpeza', 20.00, 30, 'Desinfetante perfumado de 2L'),
+('Vassoura de Nylon', 'Utensilio', 12.50, 15, 'Vassoura cabo longo'),
+('Pano de Prato Pacote', 'Textil', 25.00, 8, 'Pacote com 10 panos alvejados');
+
+/*EU ODEIO BANCO DE DADOSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS*/

@@ -1,0 +1,25 @@
+{
+  "name": "luiz-eduardo",
+  "version": "1.0.0",
+  "description": "Simulado do SAEP - SENAI",
+  "main": "naosei.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luiztibes/luiz-eduardo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/luiztibes/luiz-eduardo/issues"
+  },
+  "homepage": "https://github.com/luiztibes/luiz-eduardo#readme",
+  "dependencies": {
+    "pg": "^8.22.0",
+    "prompt-sync": "^4.2.0"
+  }
+}
